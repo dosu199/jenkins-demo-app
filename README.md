@@ -1,6 +1,6 @@
 # Jenkins + React CI Demo
 
-This repository demonstrates how to set up a Jenkins CI pipeline for a basic React application. It covers installation, configuration, and testing a build process.
+This repository demonstrates how to set up a Jenkins CI pipeline for a basic React application [Jenkins](https://www.jenkins.io/). It covers installation, configuration, and testing a build process.
 
 ---
 
@@ -114,8 +114,12 @@ Set up Slack or email notifications for failed builds
 
 ## 📎 Resources
 
-- [Jenkins](https://www.jenkins.io/)
-- [Node.js](https://nodejs.org/)
-- [Create React App](https://create-react-app.dev/)
-- [NodeJS Plugin for Jenkins](https://plugins.jenkins.io/nodejs/)
+Jenkins
+Node.js
+
+Create React App
+
+NodeJS Plugin for Jenkins
+
+)
 
