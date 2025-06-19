@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# Jenkins + React CI Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository demonstrates how to set up a Jenkins CI pipeline for a basic React application. It covers installation, configuration, and testing a build process.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Project Setup
 
-### `npm start`
+This app was created using Create React App:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+npx create-react-app jenkins-demo-app
+cd jenkins-demo-app
+git init
+git remote add origin https://github.com/<your-username>/jenkins-demo-app.git
+git add .
+git commit -m "Initial commit"
+git push -u origin main
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🛠️ Jenkins Setup Instructions
+1. Create a New Job in Jenkins
+Click New Item
 
-### `npm test`
+Enter job name (e.g., react-build-demo)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Choose Freestyle project
 
-### `npm run build`
+Click OK
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Configure the Job
+✅ Source Code Management
+Select Git
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Repository URL: https://github.com/<your-username>/jenkins-demo-app.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+✅ Build Triggers
+Choose one of:
 
-### `npm run eject`
+⏱️ Poll SCM: H/5 * * * * (checks every 5 minutes)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+🪝 GitHub Webhook: Enable “GitHub hook trigger for GITScm polling” and set up webhook at:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+arduino
+Copy
+Edit
+http://<your-jenkins-ip>:8080/github-webhook/
+✅ Build Environment
+After installing the NodeJS Plugin (Manage Jenkins → Manage Plugins):
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Go to Manage Jenkins → Global Tool Configuration
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Under NodeJS, add:
 
-## Learn More
+Name: node18
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+✅ Check “Install automatically”
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Choose version: 18.x
 
-### Code Splitting
+In the job config, under Build Environment, enable:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+✅ “Provide Node & npm bin/ folder to PATH”
 
-### Analyzing the Bundle Size
+Select node18
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+✅ Build Step
+Add a shell step:
 
-### Making a Progressive Web App
+bash
+Copy
+Edit
+npm install
+npm run build
+✅ Example: Intentionally Failing the Build
+To test a failed build, you can:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+🔧 Syntax Error (in src/App.js)
+js
+Copy
+Edit
+function Broken() {
+  return <div>Missing tag
+}
+🔧 Invalid Import
+js
+Copy
+Edit
+import Missing from './not-there';
+🔧 Force Exit
+Add to shell script:
 
-### Advanced Configuration
+bash
+Copy
+Edit
+exit 1
+📦 Deployment Artifacts
+After a successful build, the static files will be generated in build/.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Optional: add a post-build step to archive the build folder if needed.
 
-### Deployment
+🤖 Optional Improvements
+Convert to Pipeline project using Jenkinsfile
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Add ESLint or tests for stricter CI
 
-### `npm run build` fails to minify
+Set up Slack or email notifications for failed builds
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+📎 Resources
+Jenkins: https://www.jenkins.io/
+
+Node.js: https://nodejs.org/
+
+Create React App: https://create-react-app.dev/
+
+NodeJS Plugin for Jenkins: https://plugins.jenkins.io/nodejs/
