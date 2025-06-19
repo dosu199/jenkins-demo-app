@@ -112,11 +112,10 @@ Add ESLint or tests for stricter CI
 
 Set up Slack or email notifications for failed builds
 
-📎 Resources
-Jenkins: https://www.jenkins.io/
+## 📎 Resources
 
-Node.js: https://nodejs.org/
+- [Jenkins](https://www.jenkins.io/)
+- [Node.js](https://nodejs.org/)
+- [Create React App](https://create-react-app.dev/)
+- [NodeJS Plugin for Jenkins](https://plugins.jenkins.io/nodejs/)
 
-Create React App: https://create-react-app.dev/
-
-NodeJS Plugin for Jenkins: https://plugins.jenkins.io/nodejs/
