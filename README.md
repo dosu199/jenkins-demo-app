@@ -8,7 +8,6 @@ This repository demonstrates how to set up a Jenkins CI pipeline for a basic Rea
 
 This app was created using Create React App:
 
-```bash
 npx create-react-app jenkins-demo-app
 cd jenkins-demo-app
 git init
@@ -114,12 +113,7 @@ Set up Slack or email notifications for failed builds
 
 ## 📎 Resources
 
-Jenkins
-Node.js
-
-Create React App
-
-NodeJS Plugin for Jenkins
-
-)
-
+- [Jenkins](https://www.jenkins.io/)
+- [Node.js](https://nodejs.org/)
+- [Create React App](https://create-react-app.dev/)
+- [NodeJS Plugin for Jenkins](https://plugins.jenkins.io/nodejs/)
