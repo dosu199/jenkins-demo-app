@@ -8,18 +8,10 @@ This repository demonstrates how to set up a Jenkins CI pipeline for a basic Rea
 
 This app was created using Create React App:
 ```bash
-npx create-react-app jenkins-demo-app
-cd jenkins-demo-app
-git init
-git remote add origin https://github.com/<your-username>/jenkins-demo-app.git
-git add .
-git commit -m "Initial commit"
-git push -u origin main
-
 Run Docker Jenkins Container command:
 docker run -p 8080:8080 -p 50000:50000 --restart=on-failure -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk17
 
-Access Jenkins password:
+Access Jenkins:
 User: Admin
 Password: docker exec -it <containerID> cat /var/jenkins_home/secrets/initialAdminPassword
 
